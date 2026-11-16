@@ -13,6 +13,8 @@
 <img src="docs/report.png" width="820" alt="LogSentinel HTML report">
 
 </div>
+> 🎥 **[Watch the demo video →](docs/demo.mp4)** (download to play)
+
 
 ---
 
