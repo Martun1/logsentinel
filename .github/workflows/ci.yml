@@ -1,0 +1,18 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m unittest discover -s tests -v
+      - name: Demo hunt must detect the compromise
+        run: |
+          python logsentinel.py --no-color ingest samples/auth.log samples/access.log --year 2026
+          python logsentinel.py --no-color hunt | grep -q "203.0.113.66"
